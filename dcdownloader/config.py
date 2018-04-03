@@ -4,7 +4,8 @@ import yaml
 default_config = {
     'debug_mode': False,
     'save_manifest_file': True,
-    'output_path': './output',
+    'output_path': './images',
+    'epub': True,
     'proxy': None,
     'downloader_max_connection_number': 5,
     'downloader_max_retry_number': 5,

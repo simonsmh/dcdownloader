@@ -51,10 +51,13 @@ async def save_file(binary, save_path):
 async def download(url, sub_path):
     with (await sema):
         logger.info('start download %s' % get_file_name(url))
-        if not os.path.exists(proj_dir + '/' + sub_path):
-            os.mkdir(proj_dir + '/' + sub_path)
-        
-        await save_file(await download_file(url), proj_dir + '/' + sub_path + '/ ' + get_file_name(url))
+        if sub_path != "cover":
+            if not os.path.exists(proj_dir + '/' + sub_path):
+                os.mkdir(proj_dir + '/' + sub_path)
+            
+            await save_file(await download_file(url), proj_dir + '/' + sub_path + '/ ' + get_file_name(url))
+        else:
+            await save_file(await download_file(url), proj_dir + '/cover.jpg')
         
 
 

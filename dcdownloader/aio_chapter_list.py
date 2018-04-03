@@ -25,15 +25,18 @@ def parse_comic_chapter_list(url):
     doc = pq(html_text[0])
 
     url_list = {}
+
     d = doc('.cartoon_online_border ul li a')
 
-    for u in doc('.cartoon_online_border ul li a'):
+    for u in d:
         url_list.setdefault(pq(u).text(), base_url + pq(u).attr('href'))
-    
+
     title = doc('.anim_title_text h1').text()
 
+    cover = doc('#cover_pic').attr('src')
+
     logger.debug('Chapter list page fetching complete. Page number: %s', len(url_list))
-    return (title, url_list)
+    return (title, url_list, cover)
 
 def fetch_all_image_list(chapter_page_list):
     base_url = 'https://images.dmzj.com/'
